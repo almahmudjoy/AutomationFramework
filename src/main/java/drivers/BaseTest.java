@@ -4,13 +4,15 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeSuite;
 
 public class BaseTest {
     public static String url ="https://opensource-demo.orangehrmlive.com/web/index.php/auth/login";
     protected WebDriver driver;
 
-    @BeforeClass
+    @BeforeSuite
     public void setup() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
@@ -24,7 +26,7 @@ public class BaseTest {
         PageDriver.getInstance().setDriver(driver);
     }
 
-    @AfterClass
+    @AfterSuite
     public void tearDown() {
         if (driver != null) {
             PageDriver.getCurrentDriver().quit();
